@@ -386,3 +386,24 @@ function renderMenus() {
       else if(item.prices && item.prices.k) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-desc">${item.desc}</div></div><div class="price-two"><span class="p1"><span class="plabel">klein</span>${item.prices.k}</span><span class="p2"><span class="plabel">groß</span>${item.prices.g}</span></div></div>`;
       else if(item.prices && item.prices.s) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-desc">${item.desc}</div></div><div class="price-two"><span class="p1"><span class="plabel">klein</span>${item.prices.s}</span><span class="p2"><span class="plabel">groß</span>${item.prices.m}</span></div></div>`;
       else if(item.prices && item.prices.no) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-d
+      else if(item.prices && item.prices.no) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-desc">${item.desc}</div></div><div class="price-two"><span class="p1"><span class="plabel">ohne</span>${item.prices.no}</span><span class="p2"><span class="plabel">mit</span>${item.prices.with}</span></div></div>`;
+      return '';
+    }).join('');
+  }
+}
+
+// Menüyü yükle
+renderMenus();
+
+// Navigasyon butonları için scroll özelliği
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const section = document.getElementById(this.dataset.section);
+    if(section) section.scrollIntoView({behavior: 'smooth'});
+  });
+});
+</script>
+</body>
+</html>
