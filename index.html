@@ -383,10 +383,7 @@ function renderMenus() {
     if(!container) continue;
     container.innerHTML = menuDB[cat].map(item => {
       if(item.price) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-desc">${item.desc}</div></div><span class="item-price">${item.price}</span></div>`;
-      else if(item.prices && item.prices.k) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-desc">${item.desc}</div></div><div class="price-two"><span class="p1"><span class="plabel">klein</span>${item.prices.k}</span><span class="p2"><span class="plabel">groß</span>${item.prices.g}</span></div></div>`;
-      else if(item.prices && item.prices.s) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-desc">${item.desc}</div></div><div class="price-two"><span class="p1"><span class="plabel">klein</span>${item.prices.s}</span><span class="p2"><span class="plabel">groß</span>${item.prices.m}</span></div></div>`;
-      else if(item.prices && item.prices.no) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-d
-      else if(item.prices && item.prices.no) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-desc">${item.desc}</div></div><div class="price-two"><span class="p1"><span class="plabel">ohne</span>${item.prices.no}</span><span class="p2"><span class="plabel">mit</span>${item.prices.with}</span></div></div>`;
+       class="item-body"><div class="item-name">${item.name}</div><div class=       else if(item.prices && item.prices.no) return `<div class="menu-item"><span class="item-num">${item.num}</span><div class="item-body"><div class="item-name">${item.name}</div><div class="item-desc">${item.desc}</div></div><div class="price-two"><span class="p1"><span class="plabel">ohne</span>${item.prices.no}</span><span class="p2"><span class="plabel">mit</span>${item.prices.with}</span></div></div>`;
       return '';
     }).join('');
   }
