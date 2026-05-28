@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
+<head> 
+<!-- MED-GRILL GOOGLE SEO -->
+<title>Med-Grill | Döner, Pizza, Pasta & Schnitzel | Lange Str. 1, 37151 Struth</title>
+<meta name="description" content="Med-Grill Struth: Döner, Pizza, Pasta, Schnitzel und Indisch. Lange Str. 1, 37151 Struth. Tel: 036 026 / 97 5 88. Lieferung ab 50€.">
+<meta name="robots" content="index, follow">
+<meta name="geo.placename" content="Struth">
+<meta name="geo.region" content="DE-TH">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Med-Grill – Vollständige Speisekarte</title>
   <meta name="description" content="Med-Grill Eigenrieden – Komplette Speisekarte mit Döner, Pizza, Pasta, Schnitzel und indischen Gerichten.">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #fffdf5; font-family: 'Nunito', sans-serif; scroll-behavior: smooth; }
+
+    /* ===== HERO ===== */
     .hero {
       background: linear-gradient(135deg, #e8281a, #ff6b2b, #ffc107);
       padding: 2rem 1.5rem;
@@ -22,6 +33,112 @@
       display: inline-block; margin: 0.2rem; color: white; text-decoration: none;
       font-weight: 800; font-size: 0.85rem;
     }
+
+    /* ===== MUSIC PLAYER ===== */
+    .music-bar {
+      background: linear-gradient(90deg, #1a1a2e 0%, #2d1b3d 50%, #1a1a2e 100%);
+      border-bottom: 2px solid rgba(255,193,7,0.3);
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s;
+      max-height: 0;
+      padding: 0 1.5rem;
+    }
+    .music-bar.open {
+      max-height: 120px;
+      padding: 0.9rem 1.5rem;
+    }
+    .music-toggle-row {
+      background: linear-gradient(90deg, #1a1a2e, #2d1b3d);
+      border-bottom: 2px solid rgba(255,193,7,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      padding: 0.45rem 1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .music-toggle-row:hover { background: linear-gradient(90deg, #222244, #3d2450); }
+    .music-toggle-label { color: rgba(255,255,255,0.75); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; }
+    .music-toggle-arrow { color: #ffc107; font-size: 0.7rem; transition: transform 0.35s; }
+    .music-toggle-arrow.open { transform: rotate(180deg); }
+    .music-note-anim {
+      font-size: 1rem;
+      animation: noteBounce 1.8s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes noteBounce {
+      0%,100%{transform:translateY(0) rotate(-5deg);opacity:0.7}
+      50%{transform:translateY(-4px) rotate(5deg);opacity:1}
+    }
+    .music-player {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .music-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: white;
+    }
+    .music-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, #e8281a, #ffc107);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      animation: spin 8s linear infinite;
+      animation-play-state: paused;
+      flex-shrink: 0;
+    }
+    .music-icon.playing { animation-play-state: running; }
+    @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+    .music-text { color: white; }
+    .music-track-name { font-weight: 800; font-size: 0.9rem; color: #ffc107; }
+    .music-track-sub { font-size: 0.68rem; color: rgba(255,255,255,0.45); margin-top: 0.1rem; }
+    .music-controls { display: flex; align-items: center; gap: 0.5rem; }
+    .music-btn {
+      width: 38px; height: 38px;
+      border: none; border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      color: white; font-size: 0.95rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .music-btn:hover { background: rgba(255,255,255,0.28); }
+    .music-btn.main-btn {
+      width: 46px; height: 46px; font-size: 1.1rem;
+      background: linear-gradient(135deg, #e8281a, #ff6b2b);
+    }
+    .music-btn.next-btn { font-size: 0.8rem; }
+    .music-volume {
+      display: flex; align-items: center; gap: 0.4rem; color: white;
+    }
+    .music-volume input[type=range] {
+      -webkit-appearance: none; width: 75px; height: 4px;
+      background: rgba(255,255,255,0.25); border-radius: 2px; outline: none;
+    }
+    .music-volume input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 13px; height: 13px;
+      background: #ffc107; border-radius: 50%; cursor: pointer;
+    }
+    .music-progress-wrap {
+      display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.5); font-size: 0.7rem;
+    }
+    .music-progress {
+      width: 120px; height: 3px; background: rgba(255,255,255,0.2);
+      border-radius: 2px; overflow: hidden;
+    }
+    .music-progress-fill {
+      height: 100%; background: linear-gradient(90deg, #e8281a, #ffc107);
+      width: 0%; transition: width 0.5s linear;
+    }
+
+    /* ===== NAV ===== */
     .category-nav {
       position: sticky; top: 0; background: white; border-bottom: 3px solid #ffc107;
       padding: 0.75rem; display: flex; gap: 0.5rem; overflow-x: auto; z-index: 100;
@@ -34,6 +151,8 @@
       cursor: pointer; font-family: 'Nunito', sans-serif; transition: all 0.2s;
     }
     .nav-btn.active, .nav-btn:hover { background: #e8281a; border-color: #e8281a; color: white; }
+
+    /* ===== MENU SECTIONS ===== */
     main { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
     .menu-section { margin-bottom: 3rem; scroll-margin-top: 70px; }
     .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
@@ -63,6 +182,8 @@
       font-size: 0.55rem; font-weight: 800; background: #aaa; color: white;
       border-radius: 6px; padding: 0.1rem 0.3rem;
     }
+
+    /* ===== DRINKS ===== */
     .drinks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.8rem; }
     .drink-card {
       background: linear-gradient(135deg, #e3f2fd, #bbdefb);
@@ -77,19 +198,203 @@
       background: #fff8e1; border: 2px dashed #ffc107; border-radius: 16px;
       padding: 0.8rem; font-weight: 700; margin-top: 1rem; font-size: 0.85rem;
     }
+
+    /* ===== BEWERTUNGEN ===== */
+    .reviews-section {
+      background: #fff;
+      border-top: 4px solid #ffc107;
+      padding: 3rem 1rem;
+    }
+    .reviews-inner { max-width: 1100px; margin: 0 auto; }
+    .reviews-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+    }
+    .reviews-header .section-icon {
+      background: linear-gradient(135deg, #ffc107, #ff6b2b);
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .review-card {
+      background: #fffdf5;
+      border: 2px solid #f0e8d0;
+      border-radius: 16px;
+      padding: 1rem 1.2rem;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .review-card:hover { border-color: #ffc107; }
+    .review-stars { color: #ffc107; font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .review-text { font-size: 0.9rem; color: #333; line-height: 1.5; margin-bottom: 0.6rem; }
+    .review-author { font-weight: 800; font-size: 0.8rem; color: #e8281a; }
+    .review-date { font-size: 0.7rem; color: #aaa; margin-top: 0.15rem; }
+    .no-reviews {
+      text-align: center; color: #aaa; font-size: 0.95rem; padding: 2rem;
+      font-weight: 700;
+    }
+
+    /* Review Form */
+    .review-form-wrap {
+      background: linear-gradient(135deg, #fff8e1, #fff3cd);
+      border: 2px solid #ffc107;
+      border-radius: 20px;
+      padding: 1.5rem;
+      max-width: 600px;
+    }
+    .review-form-wrap h3 {
+      font-family: 'Bangers', cursive;
+      font-size: 1.5rem;
+      color: #e8281a;
+      margin-bottom: 1rem;
+    }
+    .form-group { margin-bottom: 0.8rem; }
+    .form-group label { display: block; font-weight: 800; font-size: 0.82rem; margin-bottom: 0.3rem; color: #444; }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.6rem 0.9rem;
+      border: 2px solid #f0e8d0;
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      background: white;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: #ffc107;
+    }
+    .star-picker { display: flex; gap: 0.3rem; font-size: 1.6rem; cursor: pointer; }
+    .star-picker span { color: #ddd; transition: color 0.15s; user-select: none; }
+    .star-picker span.active { color: #ffc107; }
+    .submit-btn {
+      background: linear-gradient(135deg, #e8281a, #ff6b2b);
+      color: white; border: none; border-radius: 12px;
+      padding: 0.7rem 1.5rem; font-family: 'Nunito', sans-serif;
+      font-weight: 900; font-size: 0.95rem; cursor: pointer;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .submit-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+    .form-msg { margin-top: 0.7rem; font-weight: 700; font-size: 0.85rem; }
+    .form-msg.ok { color: #2e7d32; }
+    .form-msg.err { color: #c62828; }
+
+    /* ===== ADMIN PANEL ===== */
+    .admin-trigger {
+      display: block;
+      text-align: center;
+      margin: 1rem auto 0;
+      font-size: 0.75rem;
+      color: #ccc;
+      cursor: pointer;
+      user-select: none;
+      width: fit-content;
+      transition: color 0.2s;
+    }
+    .admin-trigger:hover { color: #999; }
+
+    .admin-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .admin-overlay.open { display: flex; }
+    .admin-modal {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .admin-modal h2 {
+      font-family: 'Bangers', cursive;
+      font-size: 1.8rem;
+      color: #e8281a;
+      margin-bottom: 1rem;
+    }
+    .admin-login-form { display: flex; flex-direction: column; gap: 0.8rem; }
+    .admin-login-form input {
+      padding: 0.65rem 1rem;
+      border: 2px solid #f0e8d0;
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+    }
+    .admin-login-form input:focus { outline: none; border-color: #ffc107; }
+    .admin-btn {
+      padding: 0.65rem 1.2rem;
+      border: none; border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .admin-btn.primary { background: #e8281a; color: white; }
+    .admin-btn.secondary { background: #f0e8d0; color: #333; }
+    .admin-btn.danger { background: #fff0f0; color: #c62828; border: 2px solid #ffcdd2; }
+    .admin-btn.danger:hover { background: #ffcdd2; }
+    .admin-review-list { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; }
+    .admin-review-item {
+      background: #fffdf5;
+      border: 2px solid #f0e8d0;
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+    .admin-review-item .info { flex: 1; }
+    .admin-review-item .info .name { font-weight: 800; font-size: 0.85rem; }
+    .admin-review-item .info .txt { font-size: 0.8rem; color: #555; margin-top: 0.2rem; }
+    .admin-close-btn {
+      background: none; border: none; font-size: 1.4rem; cursor: pointer;
+      color: #aaa; line-height: 1; padding: 0;
+    }
+    .admin-close-btn:hover { color: #333; }
+    .admin-error { color: #c62828; font-weight: 700; font-size: 0.85rem; }
+    .admin-section-label {
+      font-size: 0.7rem; font-weight: 900; color: #aaa; text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 0.3rem;
+    }
+    .lock-icon { margin-right: 0.3rem; }
+
+    .admin-tab-btn {
+      padding: 0.5rem 1rem; border: 2px solid #f0e8d0; border-radius: 20px;
+      background: white; font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: 0.82rem; cursor: pointer; transition: all 0.2s;
+    }
+    .admin-tab-btn.active, .admin-tab-btn:hover { background: #e8281a; border-color: #e8281a; color: white; }
+    .stat-card {
+      background: #fffdf5; border: 2px solid #f0e8d0; border-radius: 14px;
+      padding: 1rem; text-align: center;
+    }
+    .stat-num { font-family: 'Bangers', cursive; font-size: 2.2rem; color: #e8281a; }
+    .stat-label { font-size: 0.75rem; font-weight: 700; color: #777; margin-top: 0.2rem; }
+
+    /* ===== FOOTER ===== */
     footer { background: #1a1a1a; color: white; text-align: center; padding: 2rem; }
     footer h2 { font-family: 'Bangers', cursive; font-size: 2rem; color: #ffc107; }
     footer a { color: #ffc107; text-decoration: none; font-size: 1.3rem; font-family: 'Bangers', cursive; }
     footer p { margin-top: 0.5rem; color: #aaa; font-size: 0.85rem; }
+
     @media (max-width: 640px) {
       .hero h1 { font-size: 2.8rem; }
       .price-two { min-width: 85px; }
       .item-num { min-width: 38px; font-size: 0.95rem; }
+      .music-volume { display: none; }
+      .music-progress-wrap { display: none; }
     }
   </style>
 </head>
 <body>
 
+<!-- ===== HERO ===== -->
 <div class="hero">
   <h1>Med-Grill</h1>
   <p class="tagline">Döner · Pizza · Pasta · Schnitzel · Indische Gerichte</p>
@@ -100,6 +405,39 @@
   </div>
 </div>
 
+<!-- ===== MUSIC TOGGLE BAR ===== -->
+<div class="music-toggle-row" onclick="toggleMusicBar()" id="musicToggleRow">
+  <span class="music-note-anim">🎵</span>
+  <span class="music-toggle-label">Musik</span>
+  <span class="music-toggle-arrow" id="musicArrow">▼</span>
+</div>
+
+<!-- ===== MUSIC PLAYER (collapsible) ===== -->
+<div class="music-bar" id="musicBar">
+  <div class="music-player">
+    <div class="music-info">
+      <div class="music-icon" id="discIcon">🎵</div>
+      <div class="music-text">
+        <div class="music-track-name" id="trackName">Hintergrundmusik</div>
+        <div class="music-track-sub" id="trackSub">Entspannend · Wohltuend</div>
+      </div>
+    </div>
+    <div class="music-controls">
+      <button class="music-btn" onclick="prevTrack()" title="Zurück">⏮</button>
+      <button class="music-btn main-btn" id="playPauseBtn" onclick="toggleMusic()" title="Play / Pause">▶</button>
+      <button class="music-btn next-btn" onclick="nextTrack()" title="Nächster">⏭</button>
+    </div>
+    <div class="music-progress-wrap">
+      <div class="music-progress"><div class="music-progress-fill" id="progressFill"></div></div>
+    </div>
+    <div class="music-volume">
+      <span style="font-size:0.9rem">🔊</span>
+      <input type="range" id="volumeSlider" min="0" max="100" value="55" oninput="setVolume(this.value)">
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
 <nav class="category-nav">
   <button class="nav-btn active" data-section="doener">🥙 Döner</button>
   <button class="nav-btn" data-section="salate">🥗 Salate</button>
@@ -109,8 +447,10 @@
   <button class="nav-btn" data-section="schnitzel">🥩 Schnitzel</button>
   <button class="nav-btn" data-section="indisch">🍛 Indisch</button>
   <button class="nav-btn" data-section="getraenke">🥤 Getränke</button>
+  <button class="nav-btn" data-section="bewertungen">⭐ Bewertungen</button>
 </nav>
 
+<!-- ===== MAIN MENU ===== -->
 <main>
   <section id="doener" class="menu-section">
     <div class="section-header">
@@ -181,6 +521,99 @@
   </section>
 </main>
 
+<!-- ===== BEWERTUNGEN SECTION ===== -->
+<section id="bewertungen" class="reviews-section" style="scroll-margin-top:70px;">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <div class="section-icon">⭐</div>
+      <div>
+        <div class="section-title">Kundenbewertungen</div>
+        <div class="section-subtitle">Was unsere Gäste sagen</div>
+      </div>
+    </div>
+
+    <div class="reviews-grid" id="reviewsGrid">
+      <div class="no-reviews">Noch keine Bewertungen. Sei der Erste! 🌟</div>
+    </div>
+
+    <div class="review-form-wrap">
+      <h3>✍️ Bewertung abgeben</h3>
+      <div class="form-group">
+        <label>Dein Name</label>
+        <input type="text" id="reviewName" placeholder="z. B. Max M." maxlength="40" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>Bewertung</label>
+        <div class="star-picker" id="starPicker">
+          <span data-v="1">★</span>
+          <span data-v="2">★</span>
+          <span data-v="3">★</span>
+          <span data-v="4">★</span>
+          <span data-v="5">★</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Kommentar</label>
+        <textarea id="reviewText" rows="3" placeholder="Was hat dir gefallen?" maxlength="300"></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitReview()">Bewertung senden ⭐</button>
+      <div class="form-msg" id="formMsg"></div>
+    </div>
+
+    <span class="admin-trigger" id="adminTrigger" onclick="openAdminLogin()">🔒 Admin</span>
+  </div>
+</section>
+
+<!-- ===== ADMIN OVERLAY ===== -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-modal">
+    <button class="admin-close-btn" onclick="closeAdmin()" style="float:right">✕</button>
+
+    <!-- LOGIN VIEW -->
+    <div id="adminLoginView">
+      <h2><span class="lock-icon">🔐</span> Admin-Bereich</h2>
+      <div class="admin-login-form">
+        <div class="admin-section-label">Passwort eingeben</div>
+        <input type="password" id="adminPwInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')tryAdminLogin()">
+        <div style="display:flex;gap:0.5rem;">
+          <button class="admin-btn primary" onclick="tryAdminLogin()">Einloggen</button>
+          <button class="admin-btn secondary" onclick="closeAdmin()">Abbrechen</button>
+        </div>
+        <div class="admin-error" id="adminError"></div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <div id="adminDashView" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;">
+        <h2 style="margin:0">🛠️ Admin-Bereich</h2>
+        <button class="admin-close-btn" onclick="closeAdmin()">✕</button>
+      </div>
+      <!-- Tabs -->
+      <div style="display:flex;gap:0.5rem;margin-bottom:1.2rem;border-bottom:2px solid #f0e8d0;padding-bottom:0.7rem;">
+        <button class="admin-tab-btn active" id="tabBewBtn" onclick="switchAdminTab('bew')">⭐ Bewertungen</button>
+        <button class="admin-tab-btn" id="tabStatBtn" onclick="switchAdminTab('stat')">📊 Statistik</button>
+      </div>
+      <!-- Bewertungen tab -->
+      <div id="adminTabBew">
+        <div class="admin-section-label" id="adminCount"></div>
+        <div style="display:flex;gap:0.5rem;margin-bottom:0.8rem;flex-wrap:wrap;">
+          <button class="admin-btn danger" onclick="deleteAllReviews()">🗑 Alle löschen</button>
+        </div>
+        <div class="admin-review-list" id="adminReviewList"></div>
+      </div>
+      <!-- Statistik tab -->
+      <div id="adminTabStat" style="display:none">
+        <div id="adminStats" style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;"></div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <button class="admin-btn secondary" onclick="closeAdmin()">Schließen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
 <footer>
   <h2>Med-Grill</h2>
   <a href="tel:+493602697588">📞 036 026 / 97 5 88</a>
@@ -188,6 +621,25 @@
 </footer>
 
 <script>
+/* ========================================================
+   SECURITY: Content Security helpers & XSS sanitiser
+   ======================================================== */
+function esc(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#x27;');
+}
+
+/* Rate-limit: max 3 reviews per session */
+let sessionReviews = 0;
+const SESSION_LIMIT = 3;
+
+/* ========================================================
+   MENU DATA
+   ======================================================== */
 const menuDB = {
   doener: [
     {num:"1",  name:"Döner vegetarisch",       desc:"mit Salat, Gurken, Tomaten, Zwiebeln, Kraut, Käse", price:"6,00 €"},
@@ -336,65 +788,62 @@ const menuDB = {
   ]
 };
 
-// ===== RENDER FUNCTIONS =====
-
+/* ========================================================
+   RENDER MENU
+   ======================================================== */
 function itemSingle(item) {
   return `<div class="menu-item">
-    <span class="item-num">${item.num}</span>
+    <span class="item-num">${esc(item.num)}</span>
     <div class="item-body">
-      <div class="item-name">${item.name}</div>
-      <div class="item-desc">${item.desc}</div>
+      <div class="item-name">${esc(item.name)}</div>
+      <div class="item-desc">${esc(item.desc)}</div>
     </div>
-    <span class="item-price">${item.price}</span>
+    <span class="item-price">${esc(item.price)}</span>
   </div>`;
 }
-
 function itemKleinGross(item) {
   return `<div class="menu-item">
-    <span class="item-num">${item.num}</span>
+    <span class="item-num">${esc(item.num)}</span>
     <div class="item-body">
-      <div class="item-name">${item.name}</div>
-      <div class="item-desc">${item.desc}</div>
+      <div class="item-name">${esc(item.name)}</div>
+      <div class="item-desc">${esc(item.desc)}</div>
     </div>
     <div class="price-two">
-      <span class="price-row"><span class="plabel">klein</span>${item.prices.k}</span>
-      <span class="price-row"><span class="plabel">groß</span>${item.prices.g}</span>
+      <span class="price-row"><span class="plabel">klein</span>${esc(item.prices.k)}</span>
+      <span class="price-row"><span class="plabel">groß</span>${esc(item.prices.g)}</span>
     </div>
   </div>`;
 }
-
 function itemSmallMedium(item) {
   return `<div class="menu-item">
-    <span class="item-num">${item.num}</span>
+    <span class="item-num">${esc(item.num)}</span>
     <div class="item-body">
-      <div class="item-name">${item.name}</div>
-      <div class="item-desc">${item.desc}</div>
+      <div class="item-name">${esc(item.name)}</div>
+      <div class="item-desc">${esc(item.desc)}</div>
     </div>
     <div class="price-two">
-      <span class="price-row"><span class="plabel">24 cm</span>${item.prices.s}</span>
-      <span class="price-row"><span class="plabel">28 cm</span>${item.prices.m}</span>
+      <span class="price-row"><span class="plabel">24 cm</span>${esc(item.prices.s)}</span>
+      <span class="price-row"><span class="plabel">28 cm</span>${esc(item.prices.m)}</span>
     </div>
   </div>`;
 }
-
 function itemNoWith(item) {
   return `<div class="menu-item">
-    <span class="item-num">${item.num}</span>
+    <span class="item-num">${esc(item.num)}</span>
     <div class="item-body">
-      <div class="item-name">${item.name}</div>
-      <div class="item-desc">${item.desc}</div>
+      <div class="item-name">${esc(item.name)}</div>
+      <div class="item-desc">${esc(item.desc)}</div>
     </div>
     <div class="price-two">
-      <span class="price-row"><span class="plabel">o. Gyros</span>${item.prices.no}</span>
-      <span class="price-row"><span class="plabel">m. Gyros</span>${item.prices.with}</span>
+      <span class="price-row"><span class="plabel">o. Gyros</span>${esc(item.prices.no)}</span>
+      <span class="price-row"><span class="plabel">m. Gyros</span>${esc(item.prices.with)}</span>
     </div>
   </div>`;
 }
-
 function renderSection(cat, gridId) {
-  const container = document.getElementById(gridId);
-  if (!container) return;
-  container.innerHTML = menuDB[cat].map(item => {
+  const c = document.getElementById(gridId);
+  if (!c) return;
+  c.innerHTML = menuDB[cat].map(item => {
     if (item.price) return itemSingle(item);
     if (item.prices && item.prices.k) return itemKleinGross(item);
     if (item.prices && item.prices.s) return itemSmallMedium(item);
@@ -402,34 +851,31 @@ function renderSection(cat, gridId) {
     return '';
   }).join('');
 }
-
 function renderDrinks() {
-  const container = document.getElementById('getraenkeGrid');
-  if (!container) return;
-  container.innerHTML = menuDB.getraenke.map(d => `
+  const c = document.getElementById('getraenkeGrid');
+  if (!c) return;
+  c.innerHTML = menuDB.getraenke.map(d => `
     <div class="drink-card">
-      <div class="drink-icon">${d.icon}</div>
-      <div class="drink-name">${d.size}</div>
-      <div class="drink-price">${d.price}</div>
-    </div>
-  `).join('');
+      <div class="drink-icon">${esc(d.icon)}</div>
+      <div class="drink-name">${esc(d.size)}</div>
+      <div class="drink-price">${esc(d.price)}</div>
+    </div>`).join('');
 }
-
 function renderAll() {
-  renderSection('doener',    'doenerGrid');
-  renderSection('salate',    'salateGrid');
-  renderSection('gemuese',   'gemueseGrid');
-  renderSection('pizza',     'pizzaGrid');
-  renderSection('pasta',     'pastaGrid');
-  renderSection('schnitzel', 'schnitzelGrid');
-  renderSection('indisch',   'indischGrid');
+  renderSection('doener','doenerGrid');
+  renderSection('salate','salateGrid');
+  renderSection('gemuese','gemueseGrid');
+  renderSection('pizza','pizzaGrid');
+  renderSection('pasta','pastaGrid');
+  renderSection('schnitzel','schnitzelGrid');
+  renderSection('indisch','indischGrid');
   renderDrinks();
 }
 
-// ===== NAV BUTTONS =====
-
+/* ========================================================
+   NAV BUTTONS
+   ======================================================== */
 const navButtons = document.querySelectorAll('.nav-btn');
-
 navButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     const target = document.getElementById(btn.dataset.section);
@@ -438,29 +884,473 @@ navButtons.forEach(btn => {
     btn.classList.add('active');
   });
 });
-
-// Active nav on scroll
-const sections = ['doener','salate','gemuese','pizza','pasta','schnitzel','indisch','getraenke'];
+const allSections = ['doener','salate','gemuese','pizza','pasta','schnitzel','indisch','getraenke','bewertungen'];
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.id;
-      navButtons.forEach(b => {
-        b.classList.toggle('active', b.dataset.section === id);
-      });
-      // scroll nav btn into view
-      const activeBtn = document.querySelector(`.nav-btn[data-section="${id}"]`);
-      if (activeBtn) activeBtn.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+      navButtons.forEach(b => b.classList.toggle('active', b.dataset.section === id));
+      const ab = document.querySelector(`.nav-btn[data-section="${id}"]`);
+      if (ab) ab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
     }
   });
 }, {rootMargin: '-20% 0px -70% 0px'});
+allSections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
 
-sections.forEach(id => {
-  const el = document.getElementById(id);
-  if (el) observer.observe(el);
+/* ========================================================
+   MUSIC PLAYER — 5 tracks, multi-style, Web Audio API
+   All generated — 100% free, no external audio files
+   ======================================================== */
+let audioCtx = null;
+let masterGain = null;
+let isPlaying = false;
+let musicBarOpen = false;
+let currentTrack = 0;
+let progressInterval = null;
+let trackStartTime = 0;
+const TRACK_DURATION = 32; // seconds each track
+
+const TRACKS = [
+  { name: "Abendstimmung",   sub: "Leise Piano · Entspannend" },
+  { name: "Mediterran",      sub: "Gitarre · Warm & Wohltuend" },
+  { name: "Kaffeehausklang", sub: "Jazz · Gemütlich" },
+  { name: "Frühlingswiese",  sub: "Naturklänge · Sanft" },
+  { name: "Bella Sera",      sub: "Italienisch · Iştah Açıcı" }
+];
+
+function toggleMusicBar() {
+  musicBarOpen = !musicBarOpen;
+  document.getElementById('musicBar').classList.toggle('open', musicBarOpen);
+  document.getElementById('musicArrow').classList.toggle('open', musicBarOpen);
+}
+
+// ---- Note builder ----
+function note(ctx, dest, freq, start, dur, vol, type='sine') {
+  const o = ctx.createOscillator();
+  const g = ctx.createGain();
+  o.connect(g); g.connect(dest);
+  o.type = type;
+  o.frequency.value = freq;
+  g.gain.setValueAtTime(0, ctx.currentTime + start);
+  g.gain.linearRampToValueAtTime(vol, ctx.currentTime + start + Math.min(0.06, dur * 0.2));
+  g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + start + dur);
+  o.start(ctx.currentTime + start);
+  o.stop(ctx.currentTime + start + dur + 0.05);
+}
+
+// Chord strum helper
+function chord(ctx, dest, freqs, start, dur, vol) {
+  freqs.forEach((f, i) => note(ctx, dest, f, start + i * 0.025, dur, vol, 'triangle'));
+}
+
+// ---- Track composers ----
+function composeTrack(ctx, dest, idx) {
+  // All tracks loop over 32 seconds
+  switch(idx % 5) {
+    case 0: composePiano(ctx, dest); break;
+    case 1: composeGuitar(ctx, dest); break;
+    case 2: composeJazz(ctx, dest); break;
+    case 3: composeNature(ctx, dest); break;
+    case 4: composeItalian(ctx, dest); break;
+  }
+}
+
+// Track 1 — Soft Piano (C major pentatonic lullaby feel)
+function composePiano(ctx, dest) {
+  const s = [261.6, 293.7, 329.6, 392, 440, 523.3, 587.3, 659.3];
+  const mel = [4,5,6,5,4,2,0,2, 4,5,6,7,6,5,4,5, 2,4,5,4,2,0,1,2, 4,6,5,4,2,4,2,0];
+  const bpm = 0.55;
+  mel.forEach((si, i) => {
+    note(ctx, dest, s[si], i * bpm, bpm * 1.6, 0.13, 'sine');
+    note(ctx, dest, s[si] * 2, i * bpm + 0.02, bpm * 0.9, 0.04, 'sine');
+  });
+  // Bass notes
+  [0,4,8,12,16,20,24,28].forEach(i => note(ctx, dest, 130.8, i * bpm, bpm * 3, 0.07, 'triangle'));
+}
+
+// Track 2 — Warm Acoustic Guitar (Am pentatonic)
+function composeGuitar(ctx, dest) {
+  const s = [220, 246.9, 261.6, 293.7, 329.6, 349.2, 392, 440];
+  const mel = [0,2,4,5,4,2,0,1, 2,4,6,5,4,2,4,2, 0,2,4,5,6,4,5,4, 2,0,2,4,2,0,1,0];
+  const bpm = 0.52;
+  mel.forEach((si, i) => {
+    note(ctx, dest, s[si], i * bpm, bpm * 1.4, 0.14, 'triangle');
+    note(ctx, dest, s[si] * 1.5, i * bpm + 0.03, bpm * 0.7, 0.04, 'sine');
+  });
+  // Strum bass
+  [0,4,8,12,16,20,24,28].forEach((i,j) => {
+    chord(ctx, dest, [110, 138.6, 165, 220], i * bpm, bpm * 2, 0.06);
+  });
+}
+
+// Track 3 — Jazz café (Dorian mode, swing)
+function composeJazz(ctx, dest) {
+  const s = [293.7, 311.1, 349.2, 370, 415.3, 440, 493.9, 523.3];
+  const mel = [0,2,4,3,2,0,1,2, 4,5,6,5,4,2,4,3, 0,2,3,4,5,4,3,2, 1,0,2,4,3,2,0,1];
+  const bpm = 0.42;
+  mel.forEach((si, i) => {
+    const swing = i % 2 === 1 ? 0.08 : 0;
+    note(ctx, dest, s[si], i * bpm + swing, bpm * 1.1, 0.12, 'triangle');
+  });
+  // Walking bass
+  const bass = [146.8, 155.6, 174.6, 155.6, 130.8, 146.8, 164.8, 174.6,
+                146.8, 164.8, 130.8, 146.8, 155.6, 174.6, 164.8, 155.6];
+  bass.forEach((f, i) => note(ctx, dest, f, i * bpm * 2, bpm * 1.8, 0.09, 'sine'));
+  // Hi-hat like noise via detune
+  for (let i = 0; i < 64; i++) {
+    const hh = ctx.createOscillator();
+    const hg = ctx.createGain();
+    hh.connect(hg); hg.connect(dest);
+    hh.type = 'square'; hh.frequency.value = 6000 + Math.random() * 2000;
+    const t = ctx.currentTime + i * (bpm * 2);
+    hg.gain.setValueAtTime(0, t);
+    hg.gain.linearRampToValueAtTime(0.012, t + 0.01);
+    hg.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+    hh.start(t); hh.stop(t + 0.06);
+  }
+}
+
+// Track 4 — Nature / Frühlingswiese (pentatonic, very slow)
+function composeNature(ctx, dest) {
+  const s = [329.6, 370, 415.3, 493.9, 554.4, 659.3, 740, 831];
+  const mel = [0,2,4,2,0,1,2,4, 5,4,2,4,5,6,5,4, 2,0,2,4,2,0,1,0, 4,5,6,5,4,2,0,2];
+  const bpm = 0.7;
+  mel.forEach((si, i) => {
+    note(ctx, dest, s[si], i * bpm, bpm * 2.2, 0.1, 'sine');
+    // Subtle shimmer
+    note(ctx, dest, s[si] * 4, i * bpm + 0.1, bpm * 0.8, 0.025, 'sine');
+  });
+  // Drone pad
+  note(ctx, dest, 164.8, 0, 32, 0.035, 'sine');
+  note(ctx, dest, 246.9, 0, 32, 0.02, 'sine');
+}
+
+// Track 5 — Italian Bella Sera (tarantella-ish, appetite-inducing)
+function composeItalian(ctx, dest) {
+  const s = [329.6, 349.2, 392, 440, 493.9, 523.3, 587.3, 659.3];
+  const mel = [0,2,4,5,4,2,0,2, 4,5,6,5,4,6,5,4, 2,4,5,4,2,0,2,4, 5,6,7,6,5,4,2,0];
+  const bpm = 0.38;
+  mel.forEach((si, i) => {
+    note(ctx, dest, s[si], i * bpm, bpm * 1.2, 0.15, 'triangle');
+    note(ctx, dest, s[si] * 2, i * bpm + 0.02, bpm * 0.5, 0.045, 'sine');
+  });
+  // Bass pluck
+  const bassNotes = [164.8, 196, 164.8, 174.6, 164.8, 196, 174.6, 164.8];
+  bassNotes.forEach((f, i) => note(ctx, dest, f, i * bpm * 4, bpm * 3, 0.1, 'triangle'));
+}
+
+// ---- Player controls ----
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0.55;
+    masterGain.connect(audioCtx.destination);
+  }
+}
+
+function startTrack(idx) {
+  if (!audioCtx) initAudio();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  // Fade out old
+  masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.3);
+
+  setTimeout(() => {
+    // Disconnect old nodes — reconnect fresh gain
+    masterGain.disconnect();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0;
+    masterGain.connect(audioCtx.destination);
+
+    const vol = document.getElementById('volumeSlider').value / 100 * 0.85;
+    masterGain.gain.linearRampToValueAtTime(vol, audioCtx.currentTime + 0.6);
+
+    composeTrack(audioCtx, masterGain, idx);
+    trackStartTime = audioCtx.currentTime;
+    isPlaying = true;
+    updateUI();
+    startProgressBar();
+  }, 350);
+}
+
+function toggleMusic() {
+  if (!isPlaying) {
+    if (!audioCtx) {
+      startTrack(currentTrack);
+    } else if (audioCtx.state === 'suspended') {
+      audioCtx.resume().then(() => { isPlaying = true; updateUI(); startProgressBar(); });
+    } else {
+      startTrack(currentTrack);
+    }
+  } else {
+    audioCtx.suspend().then(() => { isPlaying = false; updateUI(); clearInterval(progressInterval); });
+  }
+}
+
+function nextTrack() {
+  currentTrack = (currentTrack + 1) % TRACKS.length;
+  clearInterval(progressInterval);
+  document.getElementById('progressFill').style.width = '0%';
+  if (isPlaying) startTrack(currentTrack);
+  else updateTrackLabel();
+}
+
+function prevTrack() {
+  currentTrack = (currentTrack - 1 + TRACKS.length) % TRACKS.length;
+  clearInterval(progressInterval);
+  document.getElementById('progressFill').style.width = '0%';
+  if (isPlaying) startTrack(currentTrack);
+  else updateTrackLabel();
+}
+
+function setVolume(val) {
+  if (masterGain) masterGain.gain.value = val / 100 * 0.85;
+}
+
+function updateUI() {
+  document.getElementById('playPauseBtn').textContent = isPlaying ? '⏸' : '▶';
+  document.getElementById('discIcon').classList.toggle('playing', isPlaying);
+  updateTrackLabel();
+}
+
+function updateTrackLabel() {
+  document.getElementById('trackName').textContent = TRACKS[currentTrack].name;
+  document.getElementById('trackSub').textContent = TRACKS[currentTrack].sub;
+}
+
+function startProgressBar() {
+  clearInterval(progressInterval);
+  const fill = document.getElementById('progressFill');
+  progressInterval = setInterval(() => {
+    if (!audioCtx || !isPlaying) return;
+    const elapsed = audioCtx.currentTime - trackStartTime;
+    const pct = Math.min((elapsed / TRACK_DURATION) * 100, 100);
+    fill.style.width = pct + '%';
+    if (pct >= 100) { nextTrack(); }
+  }, 500);
+}
+
+// Init label
+updateTrackLabel();
+
+/* ========================================================
+   BEWERTUNGEN  (localStorage — persistent)
+   ======================================================== */
+const STORAGE_KEY = 'medgrill_reviews_v1';
+let selectedStars = 0;
+
+function loadReviews() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch { return []; }
+}
+
+function saveReviews(arr) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); } catch {}
+}
+
+function renderReviews() {
+  const grid = document.getElementById('reviewsGrid');
+  const reviews = loadReviews();
+  if (!reviews.length) {
+    grid.innerHTML = '<div class="no-reviews">Noch keine Bewertungen. Sei der Erste! 🌟</div>';
+    return;
+  }
+  grid.innerHTML = reviews.map((r,i) => `
+    <div class="review-card" id="rc-${i}">
+      <div class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+      <div class="review-text">${esc(r.text)}</div>
+      <div class="review-author">${esc(r.name)}</div>
+      <div class="review-date">${esc(r.date)}</div>
+    </div>`).join('');
+}
+
+// Star picker
+const stars = document.querySelectorAll('#starPicker span');
+stars.forEach(s => {
+  s.addEventListener('click', () => {
+    selectedStars = parseInt(s.dataset.v);
+    stars.forEach(x => x.classList.toggle('active', parseInt(x.dataset.v) <= selectedStars));
+  });
+  s.addEventListener('mouseover', () => {
+    const v = parseInt(s.dataset.v);
+    stars.forEach(x => x.classList.toggle('active', parseInt(x.dataset.v) <= v));
+  });
+  s.addEventListener('mouseout', () => {
+    stars.forEach(x => x.classList.toggle('active', parseInt(x.dataset.v) <= selectedStars));
+  });
 });
 
+function submitReview() {
+  const name = document.getElementById('reviewName').value.trim();
+  const text = document.getElementById('reviewText').value.trim();
+  const msg  = document.getElementById('formMsg');
+
+  if (!name) { msg.className='form-msg err'; msg.textContent='Bitte deinen Namen eingeben.'; return; }
+  if (!selectedStars) { msg.className='form-msg err'; msg.textContent='Bitte Sterne auswählen.'; return; }
+  if (!text || text.length < 5) { msg.className='form-msg err'; msg.textContent='Kommentar zu kurz (min. 5 Zeichen).'; return; }
+  if (sessionReviews >= SESSION_LIMIT) { msg.className='form-msg err'; msg.textContent='Du hast bereits 3 Bewertungen abgegeben. Danke! 🙏'; return; }
+  if (/https?:\/\//i.test(text) || /https?:\/\//i.test(name)) {
+    msg.className='form-msg err'; msg.textContent='Links sind nicht erlaubt.'; return;
+  }
+
+  const reviews = loadReviews();
+  const now = new Date();
+  reviews.unshift({
+    name: name.substring(0,40),
+    stars: selectedStars,
+    text: text.substring(0,300),
+    date: now.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'})
+  });
+  saveReviews(reviews);
+  sessionReviews++;
+  renderReviews();
+
+  document.getElementById('reviewName').value = '';
+  document.getElementById('reviewText').value = '';
+  selectedStars = 0;
+  stars.forEach(x => x.classList.remove('active'));
+  msg.className = 'form-msg ok';
+  msg.textContent = 'Danke für deine Bewertung! ⭐';
+  setTimeout(() => msg.textContent = '', 4000);
+}
+
+/* ========================================================
+   ADMIN  —  password: med1628
+   ======================================================== */
+let adminLoggedIn = false;
+let adminFailCount = 0;
+let adminLockUntil = 0;
+
+function simpleHash(s) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h) ^ s.charCodeAt(i);
+  h = h >>> 0;
+  h ^= (s.length * 0x9e3779b9) >>> 0;
+  return h.toString(16).padStart(8,'0');
+}
+const EXPECTED = simpleHash('med1628');
+
+function openAdminLogin() {
+  document.getElementById('adminOverlay').classList.add('open');
+  document.getElementById('adminPwInput').value = '';
+  document.getElementById('adminError').textContent = '';
+  if (!adminLoggedIn) {
+    document.getElementById('adminLoginView').style.display = '';
+    document.getElementById('adminDashView').style.display = 'none';
+  } else {
+    showAdminDash();
+  }
+}
+
+function closeAdmin() {
+  document.getElementById('adminOverlay').classList.remove('open');
+  adminLoggedIn = false;
+}
+
+function tryAdminLogin() {
+  const now = Date.now();
+  if (now < adminLockUntil) {
+    const secs = Math.ceil((adminLockUntil - now) / 1000);
+    document.getElementById('adminError').textContent = `Zu viele Versuche. Warte ${secs} Sekunden.`;
+    return;
+  }
+  const input = document.getElementById('adminPwInput').value;
+  if (simpleHash(input) === EXPECTED) {
+    adminLoggedIn = true;
+    adminFailCount = 0;
+    showAdminDash();
+  } else {
+    adminFailCount++;
+    document.getElementById('adminPwInput').value = '';
+    if (adminFailCount >= 5) {
+      adminLockUntil = now + 30000;
+      adminFailCount = 0;
+      document.getElementById('adminError').textContent = 'Zu viele Versuche! 30 Sekunden gesperrt.';
+    } else {
+      document.getElementById('adminError').textContent = `Falsches Passwort. (${adminFailCount}/5)`;
+    }
+  }
+}
+
+function showAdminDash() {
+  document.getElementById('adminLoginView').style.display = 'none';
+  document.getElementById('adminDashView').style.display = '';
+  switchAdminTab('bew');
+}
+
+function switchAdminTab(tab) {
+  document.getElementById('adminTabBew').style.display = tab === 'bew' ? '' : 'none';
+  document.getElementById('adminTabStat').style.display = tab === 'stat' ? '' : 'none';
+  document.getElementById('tabBewBtn').classList.toggle('active', tab === 'bew');
+  document.getElementById('tabStatBtn').classList.toggle('active', tab === 'stat');
+  if (tab === 'bew') renderAdminList();
+  if (tab === 'stat') renderAdminStats();
+}
+
+function renderAdminList() {
+  const reviews = loadReviews();
+  const list = document.getElementById('adminReviewList');
+  document.getElementById('adminCount').textContent = `${reviews.length} Bewertung(en) gespeichert`;
+  if (!reviews.length) {
+    list.innerHTML = '<div style="color:#aaa;font-size:0.9rem;padding:1rem 0;">Keine Bewertungen vorhanden.</div>';
+    return;
+  }
+  list.innerHTML = reviews.map((r,i) => `
+    <div class="admin-review-item" id="ari-${i}">
+      <div class="info">
+        <div class="name">${esc(r.name)} &nbsp; ${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)} &nbsp; <span style="color:#aaa;font-size:0.72rem">${esc(r.date)}</span></div>
+        <div class="txt">${esc(r.text)}</div>
+      </div>
+      <button class="admin-btn danger" onclick="deleteReview(${i})">🗑</button>
+    </div>`).join('');
+}
+
+function renderAdminStats() {
+  const reviews = loadReviews();
+  const avg = reviews.length ? (reviews.reduce((s,r)=>s+r.stars,0)/reviews.length).toFixed(1) : '–';
+  const fiveStr = reviews.filter(r=>r.stars===5).length;
+  const oneStr  = reviews.filter(r=>r.stars<=2).length;
+  document.getElementById('adminStats').innerHTML = `
+    <div class="stat-card"><div class="stat-num">${reviews.length}</div><div class="stat-label">Gesamt</div></div>
+    <div class="stat-card"><div class="stat-num">${avg} ⭐</div><div class="stat-label">Ø Bewertung</div></div>
+    <div class="stat-card"><div class="stat-num">${fiveStr}</div><div class="stat-label">5-Sterne</div></div>
+    <div class="stat-card"><div class="stat-num">${oneStr}</div><div class="stat-label">1-2 Sterne</div></div>`;
+}
+
+function deleteReview(idx) {
+  if (!confirm('Diese Bewertung wirklich löschen?')) return;
+  const reviews = loadReviews();
+  reviews.splice(idx, 1);
+  saveReviews(reviews);
+  renderReviews();
+  renderAdminList();
+}
+
+function deleteAllReviews() {
+  if (!confirm('Wirklich ALLE Bewertungen löschen?')) return;
+  saveReviews([]);
+  renderReviews();
+  renderAdminList();
+}
+
+/* ========================================================
+   INIT
+   ======================================================== */
 renderAll();
-</script>
+renderReviews();
+</script> 
+  <!-- Google Schema (Adres & Telefon) -->
+<div itemscope itemtype="https://schema.org/Restaurant" style="display:none;">
+  <span itemprop="name">Med-Grill</span>
+  <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+    <span itemprop="streetAddress">Lange Straße 1</span>
+    <span itemprop="postalCode">37151</span>
+    <span itemprop="addressLocality">Struth</span>
+  </div>
+  <span itemprop="telephone">036 026 / 97 5 88</span>
+  <meta itemprop="openingHours" content="Mo-Fr 11:00-21:30, Sa-So 14:00-21:30">
+</div> 
 </body>
 </html>
